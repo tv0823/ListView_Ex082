@@ -33,6 +33,7 @@
                 android:layout_width="70dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
+                android:onClick="geometrical"
                 android:text="לחץ בשביל סדרה הנדסית" />
 
             <Space
@@ -45,6 +46,7 @@
                 android:layout_width="70dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
+                android:onClick="mathematical"
                 android:text="לחץ בשביל סדרה חשבונית" />
 
             <Space
@@ -76,7 +78,8 @@
                 android:layout_weight="80"
                 android:ems="10"
                 android:hint="Enter the first number"
-                android:inputType="numberSigned|numberDecimal" />
+                android:inputType="numberSigned|numberDecimal"
+                android:visibility="invisible" />
 
             <Space
                 android:layout_width="0dp"
@@ -107,7 +110,8 @@
                 android:layout_weight="80"
                 android:ems="10"
                 android:hint="Enter multiplier/difference"
-                android:inputType="numberSigned|numberDecimal" />
+                android:inputType="numberSigned|numberDecimal"
+                android:visibility="invisible" />
 
             <Space
                 android:layout_width="0dp"
@@ -136,7 +140,9 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="10"
-                android:text="Go for results" />
+                android:onClick="Result"
+                android:text="Go for results"
+                android:visibility="invisible" />
 
             <Space
                 android:layout_width="0dp"
