@@ -54,18 +54,18 @@ public class MainActivity extends AppCompatActivity {
 
     public void Result(View view) {
         String first = FirstNumberEt.getText().toString();
-        String mulOrDiff = MultOrDiffEt.getText().toString();
+        String strMulOrDiff = MultOrDiffEt.getText().toString();
 
-        if(first.isEmpty() || mulOrDiff.isEmpty()) {
+        if(first.isEmpty() || strMulOrDiff.isEmpty()) {
             Toast.makeText(this, "One or more input is empty", Toast.LENGTH_SHORT).show();
-        } else if ((first.equals("+.") || first.equals("+") || first.equals("-.") || first.equals("-") || first.equals(".")) || (mulOrDiff.equals("+.") || mulOrDiff.equals("+") || mulOrDiff.equals("-.") || mulOrDiff.equals("-") || mulOrDiff.equals("."))) {
+        } else if ((first.equals("+.") || first.equals("+") || first.equals("-.") || first.equals("-") || first.equals(".")) || (strMulOrDiff.equals("+.") || strMulOrDiff.equals("+") || strMulOrDiff.equals("-.") || strMulOrDiff.equals("-") || strMulOrDiff.equals("."))) {
             Toast.makeText(this, "Invalid input", Toast.LENGTH_SHORT).show();
         } else{
             Intent si = new Intent(this,ResultsActivity.class);
             double firstNum = Double.parseDouble(first);
-            double numAction = Double.parseDouble(mulOrDiff);
+            double MulOrDiff = Double.parseDouble(strMulOrDiff);
 
-            si.putExtra("numAction", numAction);
+            si.putExtra("mulOrDiff", MulOrDiff);
             si.putExtra("firstNum", firstNum);
             si.putExtra("action", math);
 
