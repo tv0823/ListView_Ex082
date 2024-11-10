@@ -29,6 +29,7 @@
                 android:layout_weight="3" />
 
             <ListView
+                android:id="@+id/firstTwentyLv"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="80" />
@@ -62,12 +63,14 @@
                     android:layout_weight="2" />
 
                 <TextView
+                    android:id="@+id/x1"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="20"
                     android:gravity="center_vertical"
                     android:text="x1 ="
-                    android:textSize="20sp" />
+                    android:textSize="20sp"
+                    android:visibility="invisible" />
 
                 <Space
                     android:layout_width="0dp"
@@ -100,12 +103,14 @@
                     android:layout_weight="2" />
 
                 <TextView
+                    android:id="@+id/d"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="20"
                     android:gravity="center_vertical"
                     android:text="d ="
-                    android:textSize="20sp" />
+                    android:textSize="20sp"
+                    android:visibility="invisible" />
 
                 <Space
                     android:layout_width="0dp"
@@ -138,12 +143,14 @@
                     android:layout_weight="2" />
 
                 <TextView
+                    android:id="@+id/n"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="20"
                     android:gravity="center_vertical"
                     android:text="n ="
-                    android:textSize="20sp" />
+                    android:textSize="20sp"
+                    android:visibility="invisible" />
 
                 <Space
                     android:layout_width="0dp"
@@ -176,12 +183,14 @@
                     android:layout_weight="2" />
 
                 <TextView
+                    android:id="@+id/Sn"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="20"
                     android:gravity="center_vertical"
                     android:text="Sn ="
-                    android:textSize="20sp" />
+                    android:textSize="20sp"
+                    android:visibility="invisible" />
 
                 <Space
                     android:layout_width="0dp"

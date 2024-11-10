@@ -18,7 +18,7 @@ public class MainActivity extends AppCompatActivity {
     Button geometricalBtn, mathematicalBtnv, ResultBtn;
     EditText FirstNumberEt, MultOrDiffEt;
 
-    boolean math;
+    int math;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void mathematical(View view) {
-        math = true;
+        math = 1;
 
         MultOrDiffEt.setHint("Enter difference");
         FirstNumberEt.setVisibility(View.VISIBLE);
@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void geometrical(View view) {
-        math = false;
+        math = 0;
 
         MultOrDiffEt.setHint("Enter multiplier");
         FirstNumberEt.setVisibility(View.VISIBLE);
