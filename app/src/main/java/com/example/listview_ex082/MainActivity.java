@@ -34,22 +34,26 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void mathematical(View view) {
-        math = 1;
+    public void resetItems()
+    {
+        FirstNumberEt.setText("");
+        MultOrDiffEt.setText("");
 
-        MultOrDiffEt.setHint("Enter difference");
         FirstNumberEt.setVisibility(View.VISIBLE);
         MultOrDiffEt.setVisibility(View.VISIBLE);
         ResultBtn.setVisibility(View.VISIBLE);
     }
 
+    public void mathematical(View view) {
+        math = 1;
+        MultOrDiffEt.setHint("Enter difference");
+        resetItems();
+    }
+
     public void geometrical(View view) {
         math = 0;
-
         MultOrDiffEt.setHint("Enter multiplier");
-        FirstNumberEt.setVisibility(View.VISIBLE);
-        MultOrDiffEt.setVisibility(View.VISIBLE);
-        ResultBtn.setVisibility(View.VISIBLE);
+        resetItems();
     }
 
     public void Result(View view) {
@@ -60,7 +64,10 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(this, "One or more input is empty", Toast.LENGTH_SHORT).show();
         } else if ((first.equals("+.") || first.equals("+") || first.equals("-.") || first.equals("-") || first.equals(".")) || (strMulOrDiff.equals("+.") || strMulOrDiff.equals("+") || strMulOrDiff.equals("-.") || strMulOrDiff.equals("-") || strMulOrDiff.equals("."))) {
             Toast.makeText(this, "Invalid input", Toast.LENGTH_SHORT).show();
-        } else{
+        } else if(strMulOrDiff.equals("0")){
+            Toast.makeText(this, "multiplier and difference cant be 0", Toast.LENGTH_SHORT).show();
+        }
+        else{
             Intent si = new Intent(this,ResultsActivity.class);
             double firstNum = Double.parseDouble(first);
             double MulOrDiff = Double.parseDouble(strMulOrDiff);

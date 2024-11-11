@@ -14,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class ResultsActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
 
+    Intent gi;
     ListView firstTwentyLv;
     TextView firstNumTv, mulOrDiffTv, placeTv, sumToNumTV, x1,d,n,Sn;
     double firstNum, mulOrDiff;
@@ -36,8 +37,7 @@ public class ResultsActivity extends AppCompatActivity implements AdapterView.On
         n = findViewById(R.id.n);
         Sn = findViewById(R.id.Sn);
 
-
-        Intent gi = getIntent();
+        gi = getIntent();
         firstNum = gi.getDoubleExtra("firstNum",0);
         mulOrDiff = gi.getDoubleExtra("mulOrDiff",0);
         math = gi.getIntExtra("action", -1);
@@ -53,7 +53,7 @@ public class ResultsActivity extends AppCompatActivity implements AdapterView.On
         } else if (math == 0) {
             firstTwenty = geometrical(firstTwenty);
         }
-        ArrayAdapter<String> adp = new ArrayAdapter<String>(this, androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, firstTwenty);
+        ArrayAdapter<String> adp = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, firstTwenty);
         firstTwentyLv.setAdapter(adp);
     }
 
@@ -73,16 +73,14 @@ public class ResultsActivity extends AppCompatActivity implements AdapterView.On
         return geom;
     }
 
-    public double sum(long i){
+    public double sum2n(int pos){
         double sum = firstNum;
         if(math == 1) {
-            for(int j = 0; j<i; i++){
+            for(int i = 1; i<pos; i++){
                 sum += (firstNum+(i)*mulOrDiff);
             }
-        } else if (math == 0) {
-            for (int j = 0; j < i; i++) {
-                sum += (firstNum*Math.pow(mulOrDiff,i));
-            }
+        } else {
+            sum = firstNum*((Math.pow(mulOrDiff,pos)-1)/(mulOrDiff-1));
         }
         return sum;
     }
@@ -99,8 +97,12 @@ public class ResultsActivity extends AppCompatActivity implements AdapterView.On
         placeTv.setVisibility(View.VISIBLE);
         sumToNumTV.setVisibility(View.VISIBLE);
 
-        placeTv.setText("" + id+1);
-        double sumToNum = sum(id);
-        sumToNumTV.setText("" + sumToNumTV);
+        placeTv.setText("" + (pos+1));
+        double sumToNum = sum2n(pos+1);
+        sumToNumTV.setText("" + sumToNum);
+    }
+
+    public void goBack(View view) {
+        finish();
     }
 }
