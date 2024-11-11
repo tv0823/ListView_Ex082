@@ -8,6 +8,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -17,7 +18,7 @@ public class MainActivity extends AppCompatActivity {
 
     Button geometricalBtn, mathematicalBtnv, ResultBtn;
     EditText FirstNumberEt, MultOrDiffEt;
-
+    int REQUEST_CODE = 5789;
     int math;
 
     @Override
@@ -76,7 +77,19 @@ public class MainActivity extends AppCompatActivity {
             si.putExtra("firstNum", firstNum);
             si.putExtra("action", math);
 
-            startActivity(si);
+            startActivityForResult(si, REQUEST_CODE);
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int source, int result, @Nullable Intent data_back){
+        super.onActivityResult(source, result, data_back);
+        if(data_back != null) {
+            resetItems();
+
+            FirstNumberEt.setVisibility(View.INVISIBLE);
+            MultOrDiffEt.setVisibility(View.INVISIBLE);
+            ResultBtn.setVisibility(View.INVISIBLE);
         }
     }
 }

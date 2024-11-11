@@ -42,9 +42,6 @@ public class ResultsActivity extends AppCompatActivity implements AdapterView.On
         mulOrDiff = gi.getDoubleExtra("mulOrDiff",0);
         math = gi.getIntExtra("action", -1);
 
-        firstNumTv.setText("" + firstNum);
-        mulOrDiffTv.setText("" + mulOrDiff);
-
         firstTwentyLv.setOnItemClickListener(this);
         firstTwentyLv.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
 
@@ -55,6 +52,9 @@ public class ResultsActivity extends AppCompatActivity implements AdapterView.On
         }
         ArrayAdapter<String> adp = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, firstTwenty);
         firstTwentyLv.setAdapter(adp);
+
+        firstNumTv.setText("" + firstNum);
+        mulOrDiffTv.setText("" + mulOrDiff);
     }
 
     public String[] mathematical(String[] math){
@@ -103,6 +103,7 @@ public class ResultsActivity extends AppCompatActivity implements AdapterView.On
     }
 
     public void goBack(View view) {
+        setResult(RESULT_OK, gi);
         finish();
     }
 }
