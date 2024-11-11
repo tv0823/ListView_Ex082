@@ -7,17 +7,13 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import androidx.activity.EdgeToEdge;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 public class MainActivity extends AppCompatActivity {
 
     Button geometricalBtn, mathematicalBtnv, ResultBtn;
-    EditText FirstNumberEt, MultOrDiffEt;
+    EditText FirstNumberEt, numDEt;
     int REQUEST_CODE = 5789;
     int math;
 
@@ -31,49 +27,49 @@ public class MainActivity extends AppCompatActivity {
         ResultBtn = findViewById(R.id.ResultBtn);
 
         FirstNumberEt = findViewById(R.id.FirstNumberEt);
-        MultOrDiffEt = findViewById(R.id.MultOrDiffEt);
+        numDEt = findViewById(R.id.numDEt);
 
     }
 
     public void resetItems()
     {
         FirstNumberEt.setText("");
-        MultOrDiffEt.setText("");
+        numDEt.setText("");
 
         FirstNumberEt.setVisibility(View.VISIBLE);
-        MultOrDiffEt.setVisibility(View.VISIBLE);
+        numDEt.setVisibility(View.VISIBLE);
         ResultBtn.setVisibility(View.VISIBLE);
     }
 
     public void mathematical(View view) {
         math = 1;
-        MultOrDiffEt.setHint("Enter difference");
+        numDEt.setHint("Enter difference");
         resetItems();
     }
 
     public void geometrical(View view) {
         math = 0;
-        MultOrDiffEt.setHint("Enter multiplier");
+        numDEt.setHint("Enter multiplier");
         resetItems();
     }
 
     public void Result(View view) {
         String first = FirstNumberEt.getText().toString();
-        String strMulOrDiff = MultOrDiffEt.getText().toString();
+        String strNumD = numDEt.getText().toString();
 
-        if(first.isEmpty() || strMulOrDiff.isEmpty()) {
+        if(first.isEmpty() || strNumD.isEmpty()) {
             Toast.makeText(this, "One or more input is empty", Toast.LENGTH_SHORT).show();
-        } else if ((first.equals("+.") || first.equals("+") || first.equals("-.") || first.equals("-") || first.equals(".")) || (strMulOrDiff.equals("+.") || strMulOrDiff.equals("+") || strMulOrDiff.equals("-.") || strMulOrDiff.equals("-") || strMulOrDiff.equals("."))) {
+        } else if ((first.equals("+.") || first.equals("+") || first.equals("-.") || first.equals("-") || first.equals(".")) || (strNumD.equals("+.") || strNumD.equals("+") || strNumD.equals("-.") || strNumD.equals("-") || strNumD.equals("."))) {
             Toast.makeText(this, "Invalid input", Toast.LENGTH_SHORT).show();
-        } else if(strMulOrDiff.equals("0")){
+        } else if(strNumD.equals("0")){
             Toast.makeText(this, "multiplier and difference cant be 0", Toast.LENGTH_SHORT).show();
         }
         else{
             Intent si = new Intent(this,ResultsActivity.class);
-            double firstNum = Double.parseDouble(first);
-            double MulOrDiff = Double.parseDouble(strMulOrDiff);
+            float firstNum = Float.parseFloat(first);
+            float numD = Float.parseFloat(strNumD);
 
-            si.putExtra("mulOrDiff", MulOrDiff);
+            si.putExtra("numD", numD);
             si.putExtra("firstNum", firstNum);
             si.putExtra("action", math);
 
@@ -88,7 +84,7 @@ public class MainActivity extends AppCompatActivity {
             resetItems();
 
             FirstNumberEt.setVisibility(View.INVISIBLE);
-            MultOrDiffEt.setVisibility(View.INVISIBLE);
+            numDEt.setVisibility(View.INVISIBLE);
             ResultBtn.setVisibility(View.INVISIBLE);
         }
     }

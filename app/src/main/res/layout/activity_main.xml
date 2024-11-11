@@ -104,7 +104,7 @@
                 android:layout_weight="5" />
 
             <EditText
-                android:id="@+id/MultOrDiffEt"
+                android:id="@+id/numDEt"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="80"

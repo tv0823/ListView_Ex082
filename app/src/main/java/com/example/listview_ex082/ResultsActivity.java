@@ -1,10 +1,8 @@
 package com.example.listview_ex082;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
@@ -16,10 +14,11 @@ public class ResultsActivity extends AppCompatActivity implements AdapterView.On
 
     Intent gi;
     ListView firstTwentyLv;
-    TextView firstNumTv, mulOrDiffTv, placeTv, sumToNumTV, x1,d,n,Sn;
-    double firstNum, mulOrDiff;
+    TextView firstNumTv, numDTv, placeTv, sumToNumTV;
+    float firstNum, numD, seqSum;
     int math;
-    String[] firstTwenty = new String[20];
+    String[] seqArr;
+    float[] sumValuesArr;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,78 +27,53 @@ public class ResultsActivity extends AppCompatActivity implements AdapterView.On
 
         firstTwentyLv = findViewById(R.id.firstTwentyLv);
         firstNumTv = findViewById(R.id.firstNumTv);
-        mulOrDiffTv = findViewById(R.id.mulOrDiffTv);
+        numDTv = findViewById(R.id.numD);
         placeTv = findViewById(R.id.placeTv);
         sumToNumTV = findViewById(R.id.sumToNumTV);
 
-        x1 = findViewById(R.id.x1);
-        d = findViewById(R.id.d);
-        n = findViewById(R.id.n);
-        Sn = findViewById(R.id.Sn);
-
         gi = getIntent();
-        firstNum = gi.getDoubleExtra("firstNum",0);
-        mulOrDiff = gi.getDoubleExtra("mulOrDiff",0);
+        firstNum = gi.getFloatExtra("firstNum",0);
+        numD = gi.getFloatExtra("numD",0);
         math = gi.getIntExtra("action", -1);
+
+        seqSum = 0;
+        seqArr = new String[20];
+        sumValuesArr = new float[20];
+
+        calcArrValues();
 
         firstTwentyLv.setOnItemClickListener(this);
         firstTwentyLv.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
 
-        if(math == 1) {
-            firstTwenty = mathematical(firstTwenty);
-        } else if (math == 0) {
-            firstTwenty = geometrical(firstTwenty);
-        }
-        ArrayAdapter<String> adp = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, firstTwenty);
+        ArrayAdapter<String> adp = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, seqArr);
         firstTwentyLv.setAdapter(adp);
 
-        firstNumTv.setText("" + firstNum);
-        mulOrDiffTv.setText("" + mulOrDiff);
+        firstNumTv.setText("X1 = " + String.format("%.2f", firstNum));
+        numDTv.setText("d = " + String.format("%.2f", numD));
     }
 
-    public String[] mathematical(String[] math){
-        math[0] = "" + firstNum;
-        for(int i = 1; i<math.length; i++){
-            math[i] = "" + (firstNum+(i)*mulOrDiff);
-        }
-        return math;
-    }
-
-    public String[] geometrical(String[] geom){
-        geom[0] = "" + firstNum;
-        for(int i = 1; i<geom.length; i++){
-            geom[i] = "" + (firstNum*Math.pow(mulOrDiff,i));
-        }
-        return geom;
-    }
-
-    public double sum2n(int pos){
-        double sum = firstNum;
-        if(math == 1) {
-            for(int i = 1; i<pos; i++){
-                sum += (firstNum+(i)*mulOrDiff);
+    public void calcArrValues(){
+        for (int i = 0; i < 20; i++){
+            if (math == 1){
+                seqArr[i] = String.format("%.2f",(firstNum + i * numD));
             }
-        } else {
-            sum = firstNum*((Math.pow(mulOrDiff,pos)-1)/(mulOrDiff-1));
+            else {
+                seqArr[i] = String.format("%.2f",(firstNum * Math.pow(numD, i)));
+            }
+            seqSum += Float.parseFloat(seqArr[i]);
+            sumValuesArr[i] = seqSum;
         }
-        return sum;
     }
 
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int pos, long id) {
-        x1.setVisibility(View.VISIBLE);
-        d.setVisibility(View.VISIBLE);
-        n.setVisibility(View.VISIBLE);
-        Sn.setVisibility(View.VISIBLE);
-
         firstNumTv.setVisibility(View.VISIBLE);
-        mulOrDiffTv.setVisibility(View.VISIBLE);
+        numDTv.setVisibility(View.VISIBLE);
         placeTv.setVisibility(View.VISIBLE);
         sumToNumTV.setVisibility(View.VISIBLE);
 
-        placeTv.setText("" + (pos+1));
-        double sumToNum = sum2n(pos+1);
-        sumToNumTV.setText("" + sumToNum);
+        placeTv.setText("n = " + (pos+1));
+        sumToNumTV.setText("Sn = " + String.format("%.2f", (sumValuesArr[pos])));
     }
 
     public void goBack(View view) {

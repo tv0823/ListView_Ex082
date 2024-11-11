@@ -49,33 +49,18 @@
             <Space
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="5" />
+                android:layout_weight="3" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="10"
+                android:layout_weight="20"
                 android:orientation="horizontal">
 
                 <Space
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="2" />
-
-                <TextView
-                    android:id="@+id/x1"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="20"
-                    android:gravity="center_vertical"
-                    android:text="x1 ="
-                    android:textSize="20sp"
-                    android:visibility="invisible" />
-
-                <Space
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="5" />
 
                 <TextView
                     android:id="@+id/firstNumTv"
@@ -95,7 +80,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="10"
+                android:layout_weight="20"
                 android:orientation="horizontal">
 
                 <Space
@@ -104,22 +89,7 @@
                     android:layout_weight="2" />
 
                 <TextView
-                    android:id="@+id/d"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="20"
-                    android:gravity="center_vertical"
-                    android:text="d ="
-                    android:textSize="20sp"
-                    android:visibility="invisible" />
-
-                <Space
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="5" />
-
-                <TextView
-                    android:id="@+id/mulOrDiffTv"
+                    android:id="@+id/numD"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="30"
@@ -136,28 +106,13 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="10"
+                android:layout_weight="20"
                 android:orientation="horizontal">
 
                 <Space
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="2" />
-
-                <TextView
-                    android:id="@+id/n"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="20"
-                    android:gravity="center_vertical"
-                    android:text="n ="
-                    android:textSize="20sp"
-                    android:visibility="invisible" />
-
-                <Space
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="5" />
 
                 <TextView
                     android:id="@+id/placeTv"
@@ -186,21 +141,6 @@
                     android:layout_weight="2" />
 
                 <TextView
-                    android:id="@+id/Sn"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="20"
-                    android:gravity="center_vertical"
-                    android:text="Sn ="
-                    android:textSize="20sp"
-                    android:visibility="invisible" />
-
-                <Space
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="5" />
-
-                <TextView
                     android:id="@+id/sumToNumTV"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
@@ -216,22 +156,28 @@
 
             </LinearLayout>
 
-            <Space
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="20" />
+                android:layout_weight="20"
+                android:orientation="vertical">
 
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:onClick="goBack"
-                android:text="Go back" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
 
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="30" />
+                    <Button
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:onClick="goBack"
+                        android:text="Go back" />
+                </LinearLayout>
+
+            </LinearLayout>
+
         </LinearLayout>
 
     </LinearLayout>
+
 </LinearLayout>
