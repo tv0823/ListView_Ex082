@@ -61,6 +61,8 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(this, "One or more input is empty", Toast.LENGTH_SHORT).show();
         } else if ((first.equals("+.") || first.equals("+") || first.equals("-.") || first.equals("-") || first.equals(".")) || (strNumD.equals("+.") || strNumD.equals("+") || strNumD.equals("-.") || strNumD.equals("-") || strNumD.equals("."))) {
             Toast.makeText(this, "Invalid input", Toast.LENGTH_SHORT).show();
+        } else if((math == 0) && (first.equals("0"))){
+            Toast.makeText(this, "Geometrical seq can't start with 0", Toast.LENGTH_SHORT).show();
         } else if(strNumD.equals("0")){
             Toast.makeText(this, "multiplier and difference can't be 0", Toast.LENGTH_SHORT).show();
         }

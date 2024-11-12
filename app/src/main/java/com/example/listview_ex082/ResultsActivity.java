@@ -71,7 +71,7 @@ public class ResultsActivity extends AppCompatActivity implements AdapterView.On
                 currentValue = firstNum * Math.pow(numD, i);
             }
 
-            if (currentValue > 1000000) {
+            if ((currentValue > 1000000) || (currentValue < -1000000)) {
                 seqArr[i] = bigNumSimplifier(currentValue);
             } else {
                 seqArr[i] = String.format("%.2f", currentValue);
@@ -90,7 +90,7 @@ public class ResultsActivity extends AppCompatActivity implements AdapterView.On
         sumToNumTV.setVisibility(View.VISIBLE);
 
         placeTv.setText("n = " + (pos+1));
-        if (sumValuesArr[pos] > 1000000) {
+        if ((sumValuesArr[pos] > 1000000) || sumValuesArr[pos] < -1000000) {
             sumToNumTV.setText("Sn = " + bigNumSimplifier(sumValuesArr[pos]));
         } else {
             sumToNumTV.setText("Sn = " + String.format("%.2f", sumValuesArr[pos]));
