@@ -62,12 +62,12 @@ public class MainActivity extends AppCompatActivity {
         } else if ((first.equals("+.") || first.equals("+") || first.equals("-.") || first.equals("-") || first.equals(".")) || (strNumD.equals("+.") || strNumD.equals("+") || strNumD.equals("-.") || strNumD.equals("-") || strNumD.equals("."))) {
             Toast.makeText(this, "Invalid input", Toast.LENGTH_SHORT).show();
         } else if(strNumD.equals("0")){
-            Toast.makeText(this, "multiplier and difference cant be 0", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "multiplier and difference can't be 0", Toast.LENGTH_SHORT).show();
         }
         else{
             Intent si = new Intent(this,ResultsActivity.class);
-            float firstNum = Float.parseFloat(first);
-            float numD = Float.parseFloat(strNumD);
+            double firstNum = Float.parseFloat(first);
+            double numD = Float.parseFloat(strNumD);
 
             si.putExtra("numD", numD);
             si.putExtra("firstNum", firstNum);

@@ -15,10 +15,10 @@ public class ResultsActivity extends AppCompatActivity implements AdapterView.On
     Intent gi;
     ListView firstTwentyLv;
     TextView firstNumTv, numDTv, placeTv, sumToNumTV;
-    float firstNum, numD, seqSum;
+    double firstNum, numD, seqSum;
     int math;
     String[] seqArr;
-    float[] sumValuesArr;
+    double[] sumValuesArr;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,35 +32,52 @@ public class ResultsActivity extends AppCompatActivity implements AdapterView.On
         sumToNumTV = findViewById(R.id.sumToNumTV);
 
         gi = getIntent();
-        firstNum = gi.getFloatExtra("firstNum",0);
-        numD = gi.getFloatExtra("numD",0);
+        firstNum = gi.getDoubleExtra("firstNum",0);
+        numD = gi.getDoubleExtra("numD",0);
         math = gi.getIntExtra("action", -1);
 
         seqSum = 0;
         seqArr = new String[20];
-        sumValuesArr = new float[20];
+        sumValuesArr = new double[20];
 
         calcArrValues();
 
         firstTwentyLv.setOnItemClickListener(this);
         firstTwentyLv.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
 
-        ArrayAdapter<String> adp = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, seqArr);
+        ArrayAdapter<String> adp = new ArrayAdapter<String>(this, androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, seqArr);
         firstTwentyLv.setAdapter(adp);
 
         firstNumTv.setText("X1 = " + String.format("%.2f", firstNum));
         numDTv.setText("d = " + String.format("%.2f", numD));
     }
 
-    public void calcArrValues(){
-        for (int i = 0; i < 20; i++){
-            if (math == 1){
-                seqArr[i] = String.format("%.2f",(firstNum + i * numD));
+    public String bigNumSimplifier(double value){
+        String scientificNotation = String.format("%.4e", value);
+        String[] parts = scientificNotation.split("e");
+        double base = Double.parseDouble(parts[0]) / 10.0;
+        int exponent = Integer.parseInt(parts[1]) + 1;
+
+        return String.format("%.4f * 10^%d", base, exponent);
+    }
+
+    public void calcArrValues() {
+        for (int i = 0; i < 20; i++) {
+            double currentValue;
+
+            if (math == 1) {
+                currentValue = firstNum + i * numD;
+            } else {
+                currentValue = firstNum * Math.pow(numD, i);
             }
-            else {
-                seqArr[i] = String.format("%.2f",(firstNum * Math.pow(numD, i)));
+
+            if (currentValue > 1000000) {
+                seqArr[i] = bigNumSimplifier(currentValue);
+            } else {
+                seqArr[i] = String.format("%.2f", currentValue);
             }
-            seqSum += Float.parseFloat(seqArr[i]);
+
+            seqSum += currentValue;
             sumValuesArr[i] = seqSum;
         }
     }
@@ -73,7 +90,11 @@ public class ResultsActivity extends AppCompatActivity implements AdapterView.On
         sumToNumTV.setVisibility(View.VISIBLE);
 
         placeTv.setText("n = " + (pos+1));
-        sumToNumTV.setText("Sn = " + String.format("%.2f", (sumValuesArr[pos])));
+        if (sumValuesArr[pos] > 1000000) {
+            sumToNumTV.setText("Sn = " + bigNumSimplifier(sumValuesArr[pos]));
+        } else {
+            sumToNumTV.setText("Sn = " + String.format("%.2f", sumValuesArr[pos]));
+        }
     }
 
     public void goBack(View view) {
